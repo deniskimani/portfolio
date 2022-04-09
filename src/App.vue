@@ -1,11 +1,36 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+    <navigation-bar @tagName="changeView($event)"/>
+    <home-view :passed-Tag="tag" />    
 </template>
+<script>
+import NavigationBar from "@/components/NavigationBar.vue";
+import HomeView from "@/components/HomeView.vue"
 
+export default {
+  name: "AppView",
+  components: {
+    NavigationBar,
+    HomeView,
+  },
+  data(){
+     return {
+        tag: '"div1"'
+    }
+  },
+  
+  methods: {
+    changeView (recievedTag){
+      let modifiedTag = '"'+recievedTag+'"'
+      try {
+        this.tag = modifiedTag
+      }catch(error){
+        console.log(error)
+
+      }
+  }
+  }
+};
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -15,16 +40,5 @@
   color: #2c3e50;
 }
 
-nav {
-  padding: 30px;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>

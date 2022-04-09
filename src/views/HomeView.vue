@@ -1,18 +1,28 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  
+
+    <div class="div" id="div1">This is Div 1</div>
+    <div class="div" id="div2">This is Div 2</div>
+    <div class="div" id="div3">This is Div 3</div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
 export default {
   name: "HomeView",
-  components: {
-    HelloWorld,
+   props: {
+    refName: String,
   },
+  methods: {
+    goTo(refName) {
+      var element = this.$refs[refName];
+      var top = element.offsetTop;
+      window.scrollTo(0, top);
+    }
+  }
 };
 </script>
+<style lang="scss" scoped>
+div, button {
+  margin-bottom: 1000px;
+}
+</style>
